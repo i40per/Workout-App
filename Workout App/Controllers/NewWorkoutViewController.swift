@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class NewWorkoutViewController: UIViewController {
     
@@ -45,34 +46,29 @@ class NewWorkoutViewController: UIViewController {
         return textField
     }()
     
-    private let datePicker: UIDatePicker = {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.tintColor = .systemRed
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
-       return datePicker
-    }()
-    
-    private let testSwitch: UISwitch = {
-        let testSwitch = UISwitch()
-        testSwitch.isOn = true
-        testSwitch.onTintColor = .specialGreen
-        testSwitch.translatesAutoresizingMaskIntoConstraints = false
-        return testSwitch
-    }()
-    
-    private lazy var slider: UISlider = {
-       let slider = UISlider()
-        slider.minimumValue = 0
-        slider.maximumValue = 10
-        slider.maximumTrackTintColor = .specialLightBrown
-        slider.minimumTrackTintColor = .specialGreen
-        slider.translatesAutoresizingMaskIntoConstraints = false
-        slider.addTarget(self, action: #selector(changeValueSlider), for: .valueChanged)
-        return slider
+    private lazy var  saveButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .specialGreen
+        button.setTitle("SAVE", for: .normal)
+        button.titleLabel?.font = .robotoBold16()
+        button.tintColor = .white
+        button.layer.cornerRadius = 10
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     private let nameLabel = UILabel(text: "Name")
+    private let dateAndRepeatLabel = UILabel(text: "Date and repeat")
+    private let repsOrTimerLabel = UILabel(text: "Reps or timer")
+    
+    private let dateAndRepeatView = DateAndRepeatView()
+    private let repsOrTimerView = RepsOrTimerView()
+    
+    private let localRealm = try! Realm()
+    private var workoutModel = WorkoutModel()
+    
+    private let testImage = UIImage(named: "testWorkout")
     
     override func viewDidLayoutSubviews() {
         closeButton.layer.cornerRadius = closeButton.frame.width / 2  // Округление кнопки
@@ -84,7 +80,7 @@ class NewWorkoutViewController: UIViewController {
         setupViews()
         setConstraints()
         
-        print(testSwitch.isOn)  //Проверка положения Switch
+        //print(testSwitch.isOn)  //Проверка положения Switch
         
         //datePicker.subviews[0].subviews[0].subviews[0].alpha = 0  //Прозрачная граница
  
@@ -98,9 +94,11 @@ class NewWorkoutViewController: UIViewController {
         view.addSubview(closeButton)
         view.addSubview(nameLabel)
         view.addSubview(nameTextField)
-        view.addSubview(datePicker)
-        view.addSubview(testSwitch)
-        view.addSubview(slider)
+        view.addSubview(dateAndRepeatLabel)
+        view.addSubview(dateAndRepeatView)
+        view.addSubview(repsOrTimerLabel)
+        view.addSubview(repsOrTimerView)
+        view.addSubview(saveButton)
         
     }
     
@@ -108,8 +106,28 @@ class NewWorkoutViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @objc private func changeValueSlider() {
-        print(slider.value)
+    @objc private func saveButtonTapped() {
+        setModel()
+        RealmManager.shared.saveWorkoutModel(model: workoutModel)
+        workoutModel = WorkoutModel()
+    }
+    
+    private func setModel() {
+        guard let nameWorkout = nameTextField.text else { return }
+        workoutModel.workoutName = nameWorkout
+        
+        let dateFromPicker = dateAndRepeatView.setDateAndRepeat().0
+        workoutModel.workoutDate = dateFromPicker
+        workoutModel.workoutNumberOfDay = dateFromPicker.getWeekdayNumber()
+        
+        workoutModel.workoutRepeat = dateAndRepeatView.setDateAndRepeat().1
+        
+        workoutModel.workoutSets = repsOrTimerView.setSliderValue().0
+        workoutModel.workoutReps = repsOrTimerView.setSliderValue().1
+        workoutModel.workoutTimer = repsOrTimerView.setSliderValue().2
+        
+        guard let imageData = testImage?.pngData() else { return }
+        workoutModel.workoutImage = imageData
     }
 }
 
@@ -143,19 +161,36 @@ extension NewWorkoutViewController {
         ])
         
         NSLayoutConstraint.activate([
-            datePicker.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
-            datePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            dateAndRepeatLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
+            dateAndRepeatLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            dateAndRepeatLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
         
         NSLayoutConstraint.activate([
-            testSwitch.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 20),
-            testSwitch.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+            dateAndRepeatView.topAnchor.constraint(equalTo: dateAndRepeatLabel.bottomAnchor, constant: 3),
+            dateAndRepeatView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            dateAndRepeatView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            dateAndRepeatView.heightAnchor.constraint(equalToConstant: 94)
         ])
         
         NSLayoutConstraint.activate([
-            slider.topAnchor.constraint(equalTo: testSwitch.bottomAnchor, constant: 20),
-            slider.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            slider.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            repsOrTimerLabel.topAnchor.constraint(equalTo: dateAndRepeatView.bottomAnchor, constant: 20),
+            repsOrTimerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            repsOrTimerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+        ])
+        
+        NSLayoutConstraint.activate([
+            repsOrTimerView.topAnchor.constraint(equalTo: repsOrTimerLabel.bottomAnchor, constant: 3),
+            repsOrTimerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            repsOrTimerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            repsOrTimerView.heightAnchor.constraint(equalToConstant: 320)
+        ])
+        
+        NSLayoutConstraint.activate([
+            saveButton.topAnchor.constraint(equalTo: repsOrTimerView.bottomAnchor, constant: 20),
+            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            saveButton.heightAnchor.constraint(equalToConstant: 55)
         ])
     }
 }
