@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class NewWorkoutViewController: UIViewController {
     
@@ -58,6 +57,8 @@ class NewWorkoutViewController: UIViewController {
         return button
     }()
     
+    
+    
     private let nameLabel = UILabel(text: "Name")
     private let dateAndRepeatLabel = UILabel(text: "Date and repeat")
     private let repsOrTimerLabel = UILabel(text: "Reps or timer")
@@ -65,7 +66,6 @@ class NewWorkoutViewController: UIViewController {
     private let dateAndRepeatView = DateAndRepeatView()
     private let repsOrTimerView = RepsOrTimerView()
     
-    private let localRealm = try! Realm()
     private var workoutModel = WorkoutModel()
     
     private let testImage = UIImage(named: "testWorkout")
@@ -76,8 +76,10 @@ class NewWorkoutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        addTaps()
         setupViews()
+        setDelegates()
         setConstraints()
         
         //print(testSwitch.isOn)  //Проверка положения Switch
@@ -102,14 +104,18 @@ class NewWorkoutViewController: UIViewController {
         
     }
     
+    private func setDelegates() {
+        
+        nameTextField.delegate = self
+    }
+    
     @objc private func closeButtonTapped() {
         dismiss(animated: true)
     }
     
     @objc private func saveButtonTapped() {
         setModel()
-        RealmManager.shared.saveWorkoutModel(model: workoutModel)
-        workoutModel = WorkoutModel()
+        saveModel()
     }
     
     private func setModel() {
@@ -129,7 +135,57 @@ class NewWorkoutViewController: UIViewController {
         guard let imageData = testImage?.pngData() else { return }
         workoutModel.workoutImage = imageData
     }
+    
+    private func saveModel() { //Для введения символов в textField без пробелов и слайдеры не "0"
+        guard let text = nameTextField.text else { return }
+        let count = text.filter { $0.isNumber || $0.isLetter }.count
+        
+        if count != 0 &&
+            workoutModel.workoutSets != 0 &&
+            (workoutModel.workoutReps != 0 || workoutModel.workoutTimer != 0) {
+            RealmManager.shared.saveWorkoutModel(model: workoutModel)
+            workoutModel = WorkoutModel()
+            alertOk(title: "Success", message: nil)
+            refreshObjects()
+        } else {
+            alertOk(title: "Error", message: "Enter all parameters")
+        }
+    }
+    
+    private func refreshObjects() {
+        dateAndRepeatView.refreshDatePickerAndSwitch()
+        repsOrTimerView.refreshLabelsAndSliders()
+        nameTextField.text = ""
+    }
+    
+    private func addTaps() {  // Скрывает клавиатуру при тапе в пустое место + objc + ViewDidLoad
+        let tapScreen = UITapGestureRecognizer(target: self, action: #selector(hideKyeboard))
+        view.addGestureRecognizer(tapScreen)
+    
+        let swipeScreen = UISwipeGestureRecognizer(target: self, action: #selector(swipeHideKeyboard))
+        swipeScreen.cancelsTouchesInView = false  // Скрывает клавиатуру при движении слайдера + objc
+        view.addGestureRecognizer(swipeScreen)
+    }
+    
+    @objc private func hideKyeboard() {
+        view.endEditing(true)
+    }
+    
+    @objc private func swipeHideKeyboard() {
+        view.endEditing(true)
+    }
 }
+
+//MARK: - UITextViewDelegate
+
+extension NewWorkoutViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {  // Скрывает клавиатуру при нажатии на Done + Delegate
+        textField.resignFirstResponder()
+    }
+}
+
+//MARK: - SetConstraints
 
 extension NewWorkoutViewController {
     

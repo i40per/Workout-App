@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA03686B28A0604100F35E2D /* SimpleAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03686A28A0604100F35E2D /* SimpleAlert.swift */; };
 		FA09CD9C28630BDE0005EFB8 /* NewWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA09CD9B28630BDE0005EFB8 /* NewWorkoutViewController.swift */; };
 		FA0DB35528420C540031813A /* StatisticTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DB35428420C540031813A /* StatisticTableViewCell.swift */; };
 		FA0DB35728422E1E0031813A /* UILabel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DB35628422E1E0031813A /* UILabel + Extensions.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA03686A28A0604100F35E2D /* SimpleAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAlert.swift; sourceTree = "<group>"; };
 		FA09CD9B28630BDE0005EFB8 /* NewWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutViewController.swift; sourceTree = "<group>"; };
 		FA0DB35428420C540031813A /* StatisticTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticTableViewCell.swift; sourceTree = "<group>"; };
 		FA0DB35628422E1E0031813A /* UILabel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extensions.swift"; sourceTree = "<group>"; };
@@ -79,6 +81,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA03686928A05FF300F35E2D /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				FA03686A28A0604100F35E2D /* SimpleAlert.swift */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
 		FA09CD9D286341BA0005EFB8 /* NewWorkoutVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +224,7 @@
 				FA87602827FDA5240095663F /* MainVC */,
 				FA0DB35228420BF30031813A /* StatisticVC */,
 				FA09CD9D286341BA0005EFB8 /* NewWorkoutVC */,
+				FA03686928A05FF300F35E2D /* Alerts */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -335,6 +346,7 @@
 				FADDAAFF27FCF6390032ACBF /* AppDelegate.swift in Sources */,
 				FA4A9FCC283F8A4600771F41 /* CalendarCollectionViewCell.swift in Sources */,
 				FA87602A27FDA5670095663F /* CalendarView.swift in Sources */,
+				FA03686B28A0604100F35E2D /* SimpleAlert.swift in Sources */,
 				FADDAB0127FCF6390032ACBF /* SceneDelegate.swift in Sources */,
 				FA09CD9C28630BDE0005EFB8 /* NewWorkoutViewController.swift in Sources */,
 				FA0DB35728422E1E0031813A /* UILabel + Extensions.swift in Sources */,

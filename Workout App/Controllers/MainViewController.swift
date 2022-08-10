@@ -111,12 +111,19 @@ class MainViewController: UIViewController {
     private func setDelegates() {
         tableView.dataSource = self
         tableView.delegate = self
+        calendarView.cellCollectionViewDelegate = self
     }
     
     @objc private func addWorkoutButtonTapped() {
         let newWorkoutViewController = NewWorkoutViewController()
         newWorkoutViewController.modalPresentationStyle = .fullScreen
         present(newWorkoutViewController, animated: true)
+    }
+}
+
+extension MainViewController: SelectCollectionViewItemProtocol {
+    func selectItem(date: Date) {
+        print(date)
     }
 }
 
