@@ -29,6 +29,7 @@
 		FA92BC3328B543D8000ECFE4 /* RepsWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92BC3228B543D8000ECFE4 /* RepsWorkoutViewController.swift */; };
 		FA92BC3528B54473000ECFE4 /* TimerWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92BC3428B54473000ECFE4 /* TimerWorkoutViewController.swift */; };
 		FA99A9D828B96A1900B4D2D3 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99A9D728B96A1900B4D2D3 /* CustomAlert.swift */; };
+		FA9A9B7828C50A7200490EE1 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A9B7728C50A7200490EE1 /* Notifications.swift */; };
 		FA9BDD9E2842B3E40041DEC9 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9BDD9D2842B3E40041DEC9 /* MainTabBarController.swift */; };
 		FA9FDAB628BB9B4A0085E817 /* OkCancelAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9FDAB528BB9B4A0085E817 /* OkCancelAlert.swift */; };
 		FABAAE9C28C138070026220B /* WorkoutParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABAAE9B28C138070026220B /* WorkoutParametersView.swift */; };
@@ -42,6 +43,11 @@
 		FADDAB0327FCF63A0032ACBF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDAB0227FCF63A0032ACBF /* MainViewController.swift */; };
 		FADDAB0827FCF63C0032ACBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADDAB0727FCF63C0032ACBF /* Assets.xcassets */; };
 		FADDAB0B27FCF63C0032ACBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADDAB0927FCF63C0032ACBF /* LaunchScreen.storyboard */; };
+		FAFA2F5A28C3DBD5001FC8D8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA2F5928C3DBD5001FC8D8 /* ProfileViewController.swift */; };
+		FAFA2F5C28C3DCCB001FC8D8 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA2F5B28C3DCCB001FC8D8 /* SettingViewController.swift */; };
+		FAFA2F5E28C3DF46001FC8D8 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA2F5D28C3DF46001FC8D8 /* UserModel.swift */; };
+		FAFA2F6628C3E412001FC8D8 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA2F6528C3E412001FC8D8 /* ProfileCollectionViewCell.swift */; };
+		FAFA2F6828C3E54C001FC8D8 /* GallaryOrPhotoAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA2F6728C3E54C001FC8D8 /* GallaryOrPhotoAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +71,7 @@
 		FA92BC3228B543D8000ECFE4 /* RepsWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsWorkoutViewController.swift; sourceTree = "<group>"; };
 		FA92BC3428B54473000ECFE4 /* TimerWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWorkoutViewController.swift; sourceTree = "<group>"; };
 		FA99A9D728B96A1900B4D2D3 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		FA9A9B7728C50A7200490EE1 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		FA9BDD9D2842B3E40041DEC9 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		FA9FDAB528BB9B4A0085E817 /* OkCancelAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkCancelAlert.swift; sourceTree = "<group>"; };
 		FABAAE9B28C138070026220B /* WorkoutParametersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutParametersView.swift; sourceTree = "<group>"; };
@@ -80,6 +87,11 @@
 		FADDAB0727FCF63C0032ACBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FADDAB0A27FCF63C0032ACBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FADDAB0C27FCF63C0032ACBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAFA2F5928C3DBD5001FC8D8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FAFA2F5B28C3DCCB001FC8D8 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		FAFA2F5D28C3DF46001FC8D8 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		FAFA2F6528C3E412001FC8D8 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		FAFA2F6728C3E54C001FC8D8 /* GallaryOrPhotoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallaryOrPhotoAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +113,7 @@
 				FA03686A28A0604100F35E2D /* SimpleAlert.swift */,
 				FA99A9D728B96A1900B4D2D3 /* CustomAlert.swift */,
 				FA9FDAB528BB9B4A0085E817 /* OkCancelAlert.swift */,
+				FAFA2F6728C3E54C001FC8D8 /* GallaryOrPhotoAlert.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -239,6 +252,7 @@
 			children = (
 				FADDAAFE27FCF6390032ACBF /* AppDelegate.swift */,
 				FADDAB0027FCF6390032ACBF /* SceneDelegate.swift */,
+				FA9A9B7728C50A7200490EE1 /* Notifications.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -247,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				FA858534286C770F00A9E893 /* WorkoutModel.swift */,
+				FAFA2F5D28C3DF46001FC8D8 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -254,6 +269,7 @@
 		FADDAB1427FCFAE30032ACBF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FAFA2F6428C3E3D5001FC8D8 /* ProfileVC */,
 				FA87602827FDA5240095663F /* MainVC */,
 				FABAAE9928C1376F0026220B /* RepsWorkoutVC */,
 				FABAAE9A28C1378F0026220B /* TimerWorkoutVC */,
@@ -269,10 +285,12 @@
 			children = (
 				FA9BDD9D2842B3E40041DEC9 /* MainTabBarController.swift */,
 				FADDAB0227FCF63A0032ACBF /* MainViewController.swift */,
+				FA09CD9B28630BDE0005EFB8 /* NewWorkoutViewController.swift */,
 				FA92BC3228B543D8000ECFE4 /* RepsWorkoutViewController.swift */,
 				FA92BC3428B54473000ECFE4 /* TimerWorkoutViewController.swift */,
+				FAFA2F5928C3DBD5001FC8D8 /* ProfileViewController.swift */,
+				FAFA2F5B28C3DCCB001FC8D8 /* SettingViewController.swift */,
 				FA4A9FD128400F9300771F41 /* StatisticViewController.swift */,
-				FA09CD9B28630BDE0005EFB8 /* NewWorkoutViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -286,6 +304,14 @@
 				FADDAB0C27FCF63C0032ACBF /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		FAFA2F6428C3E3D5001FC8D8 /* ProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				FAFA2F6528C3E412001FC8D8 /* ProfileCollectionViewCell.swift */,
+			);
+			path = ProfileVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,8 +405,11 @@
 				FADDAB0327FCF63A0032ACBF /* MainViewController.swift in Sources */,
 				FA858529286C3FC600A9E893 /* DateAndRepeatView.swift in Sources */,
 				FA99A9D828B96A1900B4D2D3 /* CustomAlert.swift in Sources */,
+				FAFA2F5A28C3DBD5001FC8D8 /* ProfileViewController.swift in Sources */,
 				FA4A9FCE283FDCB000771F41 /* WorkoutTableViewCell.swift in Sources */,
 				FA4A9FC7283F601900771F41 /* UIColor + Extensions.swift in Sources */,
+				FA9A9B7828C50A7200490EE1 /* Notifications.swift in Sources */,
+				FAFA2F6828C3E54C001FC8D8 /* GallaryOrPhotoAlert.swift in Sources */,
 				FA9FDAB628BB9B4A0085E817 /* OkCancelAlert.swift in Sources */,
 				FA85852D286C40B500A9E893 /* Date + Extensions.swift in Sources */,
 				FA92BC3528B54473000ECFE4 /* TimerWorkoutViewController.swift in Sources */,
@@ -391,7 +420,10 @@
 				FA92BC3328B543D8000ECFE4 /* RepsWorkoutViewController.swift in Sources */,
 				FA03686B28A0604100F35E2D /* SimpleAlert.swift in Sources */,
 				FADDAB0127FCF6390032ACBF /* SceneDelegate.swift in Sources */,
+				FAFA2F6628C3E412001FC8D8 /* ProfileCollectionViewCell.swift in Sources */,
 				FA09CD9C28630BDE0005EFB8 /* NewWorkoutViewController.swift in Sources */,
+				FAFA2F5E28C3DF46001FC8D8 /* UserModel.swift in Sources */,
+				FAFA2F5C28C3DCCB001FC8D8 /* SettingViewController.swift in Sources */,
 				FABAAE9C28C138070026220B /* WorkoutParametersView.swift in Sources */,
 				FA0DB35728422E1E0031813A /* UILabel + Extensions.swift in Sources */,
 				FA0DB35528420C540031813A /* StatisticTableViewCell.swift in Sources */,

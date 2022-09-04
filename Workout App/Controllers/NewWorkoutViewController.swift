@@ -144,6 +144,7 @@ class NewWorkoutViewController: UIViewController {
             workoutModel.workoutSets != 0 &&
             (workoutModel.workoutReps != 0 || workoutModel.workoutTimer != 0) {
             RealmManager.shared.saveWorkoutModel(model: workoutModel)
+            createNotifications()
             workoutModel = WorkoutModel()
             alertOk(title: "Success", message: nil)
             refreshObjects()
@@ -173,6 +174,12 @@ class NewWorkoutViewController: UIViewController {
     
     @objc private func swipeHideKeyboard() {
         view.endEditing(true)
+    }
+    
+    private func createNotifications() {
+        let notifications = Notifications()
+        let stringDate = workoutModel.workoutDate.dayMonthYearFromDate()
+        notifications.scheduleDateNotification(date: workoutModel.workoutDate, id: "workout" + stringDate)
     }
 }
 

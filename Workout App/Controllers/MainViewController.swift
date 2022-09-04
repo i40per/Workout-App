@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
         let imageView = UIImageView()
         imageView.backgroundColor = #colorLiteral(red: 0.7607843137, green: 0.7607843137, blue: 0.7607843137, alpha: 1)
         imageView.layer.borderWidth = 5
+        imageView.clipsToBounds = true
         imageView.layer.borderColor = UIColor.white.cgColor
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -87,6 +88,7 @@ class MainViewController: UIViewController {
     
     private let localRealm = try! Realm()
     private var workoutArray: Results<WorkoutModel>!
+    private var userArray: Results<UserModel>!
     
     private let idWorkoutTableViewCell = "idWorkoutTableViewCell"
     
@@ -101,10 +103,13 @@ class MainViewController: UIViewController {
         
         getWorcouts(date: Date())
         tableView.reloadData()
+        setupUserParameters()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userArray = localRealm.objects(UserModel.self)
         
         setupViews()
         setConstreints()
@@ -166,6 +171,17 @@ class MainViewController: UIViewController {
         } else {
             noWorkoutImageView.isHidden = true
             tableView.isHidden = false
+        }
+    }
+    
+    private func setupUserParameters() {
+        
+        if userArray.count != 0 {
+            userNameLabel.text = userArray[0].userFirstName + " " + userArray[0].userSecondName
+            
+            guard let data = userArray[0].userImage else { return }
+            guard let image = UIImage(data: data) else { return }
+            userPhotoImageView.image = image
         }
     }
 }
