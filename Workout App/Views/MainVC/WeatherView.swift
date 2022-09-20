@@ -9,7 +9,7 @@ import UIKit
 
 class WeatherView: UIView {
     
-    private let weatherIcomImageView: UIImageView = {
+    private let weatherIconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "sun")
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,10 +53,34 @@ class WeatherView: UIView {
         layer.cornerRadius = 10
         translatesAutoresizingMaskIntoConstraints = false
         
-        addSubview(weatherIcomImageView)
+        addSubview(weatherIconImageView)
         addSubview(weatherStatusLabel)
         addSubview(weatherDiscriptionLabel)
         
+    }
+    
+    private func updateLabel(model: WeatherModel) {
+        weatherStatusLabel.text = model.weather[0].myDescription + " \(model.main.temperatureCelsius)°C"
+        
+        switch model.weather[0].weatherDescription {
+        case "clear sky":
+            weatherDiscriptionLabel.text = "Лучше остаться дома и провести домашнюю тренировку"
+        default :
+            weatherDiscriptionLabel.text = "No data"
+        }
+    }
+    
+    private func updateImage(data: Data) {
+        guard let image = UIImage(data: data) else { return }
+        weatherIconImageView.image = image
+    }
+    
+    public func setWeather(model: WeatherModel) {
+        updateLabel(model: model)
+    }
+    
+    public func setImage(data: Data) {
+        updateImage(data: data)
     }
 
 }
@@ -66,23 +90,23 @@ extension WeatherView {
     private func setContraints() {
         
         NSLayoutConstraint.activate([
-            weatherIcomImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            weatherIcomImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            weatherIcomImageView.widthAnchor.constraint(equalToConstant: 60),
-            weatherIcomImageView.heightAnchor.constraint(equalToConstant: 60)
+            weatherIconImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            weatherIconImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            weatherIconImageView.widthAnchor.constraint(equalToConstant: 60),
+            weatherIconImageView.heightAnchor.constraint(equalToConstant: 60)
         ])
         
         NSLayoutConstraint.activate([
             weatherStatusLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             weatherStatusLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            weatherStatusLabel.trailingAnchor.constraint(equalTo: weatherIcomImageView.leadingAnchor, constant: -10),
+            weatherStatusLabel.trailingAnchor.constraint(equalTo: weatherIconImageView.leadingAnchor, constant: -10),
             weatherStatusLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
         
         NSLayoutConstraint.activate([
             weatherDiscriptionLabel.topAnchor.constraint(equalTo: weatherStatusLabel.bottomAnchor, constant: 0),
             weatherDiscriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            weatherDiscriptionLabel.trailingAnchor.constraint(equalTo: weatherIcomImageView.leadingAnchor, constant: -10),
+            weatherDiscriptionLabel.trailingAnchor.constraint(equalTo: weatherIconImageView.leadingAnchor, constant: -10),
             weatherDiscriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
         ])
     }

@@ -105,6 +105,11 @@ class MainViewController: UIViewController {
         tableView.reloadData()
         setupUserParameters()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showOnboarding()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,6 +120,7 @@ class MainViewController: UIViewController {
         setConstreints()
         setDelegates()
         getWorcouts(date: Date())
+        getWeather()
     }
     
     private func setupViews() {
@@ -140,6 +146,24 @@ class MainViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         calendarView.cellCollectionViewDelegate = self
+    }
+    
+    private func getWeather() {
+        NetworkDataFetch.shared.fetchWether { [weak self] result, error in
+            guard let self = self else { return }
+            if let model = result {
+                self.weatherView.setWeather(model: model)
+                NetworkImageRequest.shared.requestData(id: model.weather[0].icon) { [weak self] result in
+                    guard let self = self else { return }
+                    switch result {
+                    case .success(let data):
+                        self.weatherView.setImage(data: data)
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
     }
     
     @objc private func addWorkoutButtonTapped() {
@@ -182,6 +206,16 @@ class MainViewController: UIViewController {
             guard let data = userArray[0].userImage else { return }
             guard let image = UIImage(data: data) else { return }
             userPhotoImageView.image = image
+        }
+    }
+    
+    private func showOnboarding() {
+        let userDefaults = UserDefaults.standard
+        let onBoardingWasViewed = userDefaults.bool(forKey: "OnBoardingWasViewed")
+        if onBoardingWasViewed == false {
+            let onboardingViewController = OnboardingViewController()
+            onboardingViewController.modalPresentationStyle = .fullScreen
+            present(onboardingViewController, animated: false)
         }
     }
 }
