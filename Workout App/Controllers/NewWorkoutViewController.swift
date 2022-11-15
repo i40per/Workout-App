@@ -2,7 +2,7 @@
 //  NewWorkoutViewController.swift
 //  Workout App
 //
-//  Created by MacBook on 22.06.2022.
+//  Created by Evgenii Lukin on 22.06.2022.
 //
 
 import UIKit
@@ -14,7 +14,6 @@ class NewWorkoutViewController: UIViewController {
         label.text = "NEW WORKOUT"
         label.font = .robotoMedium24()
         label.textColor = .specialGray
-//        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -45,7 +44,7 @@ class NewWorkoutViewController: UIViewController {
         return textField
     }()
     
-    private lazy var  saveButton: UIButton = {
+    private lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .specialGreen
         button.setTitle("SAVE", for: .normal)
@@ -56,8 +55,6 @@ class NewWorkoutViewController: UIViewController {
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
-    
-    
     
     private let nameLabel = UILabel(text: "Name")
     private let dateAndRepeatLabel = UILabel(text: "Date and repeat")
@@ -71,7 +68,7 @@ class NewWorkoutViewController: UIViewController {
     private let testImage = UIImage(named: "testWorkout")
     
     override func viewDidLayoutSubviews() {
-        closeButton.layer.cornerRadius = closeButton.frame.width / 2  // Округление кнопки
+        closeButton.layer.cornerRadius = closeButton.frame.width / 2
     }
 
     override func viewDidLoad() {
@@ -81,11 +78,6 @@ class NewWorkoutViewController: UIViewController {
         setupViews()
         setDelegates()
         setConstraints()
-        
-        //print(testSwitch.isOn)  //Проверка положения Switch
-        
-        //datePicker.subviews[0].subviews[0].subviews[0].alpha = 0  //Прозрачная граница
- 
     }
     
     private func setupViews() {
@@ -101,7 +93,6 @@ class NewWorkoutViewController: UIViewController {
         view.addSubview(repsOrTimerLabel)
         view.addSubview(repsOrTimerView)
         view.addSubview(saveButton)
-        
     }
     
     private func setDelegates() {
@@ -136,7 +127,8 @@ class NewWorkoutViewController: UIViewController {
         workoutModel.workoutImage = imageData
     }
     
-    private func saveModel() { //Для введения символов в textField без пробелов и слайдеры не "0"
+    private func saveModel() {
+        
         guard let text = nameTextField.text else { return }
         let count = text.filter { $0.isNumber || $0.isLetter }.count
         
@@ -159,12 +151,13 @@ class NewWorkoutViewController: UIViewController {
         nameTextField.text = ""
     }
     
-    private func addTaps() {  // Скрывает клавиатуру при тапе в пустое место + objc + ViewDidLoad
+    private func addTaps() {
+        
         let tapScreen = UITapGestureRecognizer(target: self, action: #selector(hideKyeboard))
         view.addGestureRecognizer(tapScreen)
     
         let swipeScreen = UISwipeGestureRecognizer(target: self, action: #selector(swipeHideKeyboard))
-        swipeScreen.cancelsTouchesInView = false  // Скрывает клавиатуру при движении слайдера + objc
+        swipeScreen.cancelsTouchesInView = false
         view.addGestureRecognizer(swipeScreen)
     }
     
@@ -187,7 +180,7 @@ class NewWorkoutViewController: UIViewController {
 
 extension NewWorkoutViewController: UITextFieldDelegate {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {  // Скрывает клавиатуру при нажатии на Done + Delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
     }
 }
@@ -200,56 +193,40 @@ extension NewWorkoutViewController {
         
         NSLayoutConstraint.activate([
             newWorkoutLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            newWorkoutLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
+            newWorkoutLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
             closeButton.centerYAnchor.constraint(equalTo: newWorkoutLabel.centerYAnchor),
             closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             closeButton.heightAnchor.constraint(equalToConstant: 30),
-            closeButton.widthAnchor.constraint(equalToConstant: 30)
-        ])
-        
-        NSLayoutConstraint.activate([
+            closeButton.widthAnchor.constraint(equalToConstant: 30),
+            
             nameLabel.topAnchor.constraint(equalTo: newWorkoutLabel.bottomAnchor, constant: 10),
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-        ])
-        
-        NSLayoutConstraint.activate([
+            nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
             nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 3),
             nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            nameTextField.heightAnchor.constraint(equalToConstant: 38)
-        ])
-        
-        NSLayoutConstraint.activate([
+            nameTextField.heightAnchor.constraint(equalToConstant: 38),
+            
             dateAndRepeatLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
             dateAndRepeatLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            dateAndRepeatLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-        ])
-        
-        NSLayoutConstraint.activate([
+            dateAndRepeatLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
             dateAndRepeatView.topAnchor.constraint(equalTo: dateAndRepeatLabel.bottomAnchor, constant: 3),
             dateAndRepeatView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             dateAndRepeatView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            dateAndRepeatView.heightAnchor.constraint(equalToConstant: 94)
-        ])
-        
-        NSLayoutConstraint.activate([
+            dateAndRepeatView.heightAnchor.constraint(equalToConstant: 94),
+            
             repsOrTimerLabel.topAnchor.constraint(equalTo: dateAndRepeatView.bottomAnchor, constant: 20),
             repsOrTimerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            repsOrTimerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-        ])
-        
-        NSLayoutConstraint.activate([
+            repsOrTimerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
             repsOrTimerView.topAnchor.constraint(equalTo: repsOrTimerLabel.bottomAnchor, constant: 3),
             repsOrTimerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             repsOrTimerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            repsOrTimerView.heightAnchor.constraint(equalToConstant: 320)
-        ])
-        
-        NSLayoutConstraint.activate([
+            repsOrTimerView.heightAnchor.constraint(equalToConstant: 320),
+            
             saveButton.topAnchor.constraint(equalTo: repsOrTimerView.bottomAnchor, constant: 20),
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),

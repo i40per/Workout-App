@@ -2,12 +2,13 @@
 //  OnboardingViewController.swift
 //  Workout App
 //
-//  Created by MacBook on 10.09.2022.
+//  Created by Evgenii Lukin on 10.09.2022.
 //
 
 import UIKit
 
 struct OnboardingStruct {
+    
     let topLabel: String
     let bottomLabel: String
     let image: UIImage
@@ -36,7 +37,7 @@ class OnboardingViewController: UIViewController {
         return pageControl
     }()
 
-    let collectionView: UICollectionView = {
+    private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.scrollDirection = .horizontal
@@ -63,6 +64,7 @@ class OnboardingViewController: UIViewController {
     }
     
     private func setupViews() {
+        
         view.backgroundColor = .specialGreen
 
         view.addSubview(nextButton)
@@ -89,6 +91,7 @@ class OnboardingViewController: UIViewController {
     }
     
     private func setDelegates() {
+        
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -147,17 +150,13 @@ extension OnboardingViewController {
             nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
             nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            nextButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        
-        NSLayoutConstraint.activate([
+            nextButton.heightAnchor.constraint(equalToConstant: 50),
+            
             pageControl.bottomAnchor.constraint(equalTo: nextButton.topAnchor, constant: -20),
             pageControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             pageControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            pageControl.heightAnchor.constraint(equalToConstant: 30)
-        ])
-        
-        NSLayoutConstraint.activate([
+            pageControl.heightAnchor.constraint(equalToConstant: 30),
+            
             collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),

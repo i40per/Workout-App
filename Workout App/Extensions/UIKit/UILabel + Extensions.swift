@@ -2,12 +2,13 @@
 //  UILabel + Extensions.swift
 //  Workout App
 //
-//  Created by MacBook on 28.05.2022.
+//  Created by Evgenii Lukin on 28.05.2022.
 //
 
 import UIKit
 
 extension UILabel {
+    
     convenience init(text: String = "") {
         self.init()
         

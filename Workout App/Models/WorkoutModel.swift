@@ -2,13 +2,14 @@
 //  WorkoutModel.swift
 //  Workout App
 //
-//  Created by MacBook on 29.06.2022.
+//  Created by Evgenii Lukin on 29.06.2022.
 //
 
 import Foundation
 import RealmSwift
 
 class WorkoutModel: Object {
+    
     @Persisted var workoutDate: Date
     @Persisted var workoutNumberOfDay: Int = 0
     @Persisted var workoutName: String = "Unknow"

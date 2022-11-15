@@ -2,27 +2,28 @@
 //  Date + Extensions.swift
 //  Workout App
 //
-//  Created by MacBook on 29.06.2022.
+//  Created by Evgenii Lukin on 29.06.2022.
 //
 
 import Foundation
 
 extension Date {
     
-    func localDate() -> Date {  //Подгоняет время в базе данных под наш часовой пояс
+    func localDate() -> Date {
+        
         let timeZoneOffset = Double(TimeZone.current.secondsFromGMT(for: self))
         let localDate = Calendar.current.date(byAdding: .second, value: Int(timeZoneOffset), to: self) ?? Date()
         return localDate
     }
     
     func getWeekArray() -> [[String]] {
+        
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_GB")
         formatter.dateFormat = "EEEEEE"
         
         var weekArray : [[String]] = [[], []]
         let calendar = Calendar.current
-        //calendar.timeZone = TimeZone(abbreviation: "UTC") ?? .current
         
         for index in -6...0 {
             let date = calendar.date(byAdding: .day, value: index, to: self) ?? Date()
@@ -36,7 +37,7 @@ extension Date {
     
     func startEndDate() -> (Date, Date) {
         
-        let formatter = DateFormatter()  // Интервал времени для работы с базой данных
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
         
         let calendar = Calendar.current
@@ -50,28 +51,30 @@ extension Date {
             let components = DateComponents(day: 1)
             return calendar.date(byAdding: components, to: local) ?? Date()
         }()
-        
         return (local, dateEnd)
     }
         
-    
     func getWeekdayNumber() -> Int {
+        
         let calendar = Calendar.current
         let weekday = calendar.component(.weekday, from: self)
         return weekday
     }
     
     func offsetDays(days: Int) -> Date {
+        
         let offsetDate = Calendar.current.date(byAdding: .day, value: -days, to: self) ?? Date()
         return offsetDate
     }
     
     func offsetMonth(month: Int) -> Date {
+        
         let offsetDate = Calendar.current.date(byAdding: .month, value: -month, to: self) ?? Date()
         return offsetDate
     }
     
     func dayMonthYearFromDate() -> String {
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
         let date = formatter.string(from: self)

@@ -2,7 +2,7 @@
 //  GallaryOrPhotoAlert.swift
 //  Workout App
 //
-//  Created by MacBook on 03.09.2022.
+//  Created by Evgenii Lukin on 03.09.2022.
 //
 
 import UIKit

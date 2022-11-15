@@ -2,7 +2,7 @@
 //  ProfileCollectionViewCell.swift
 //  Workout App
 //
-//  Created by MacBook on 03.09.2022.
+//  Created by Evgenii Lukin on 03.09.2022.
 //
 
 import UIKit
@@ -50,6 +50,7 @@ class ProfileCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupViews() {
+        
         layer.cornerRadius = 20
         backgroundColor = .specialDarkYellow
         
@@ -59,6 +60,7 @@ class ProfileCollectionViewCell: UICollectionViewCell {
     }
     
     func cellConfigure(model: ResultWorkout) {
+        
         nameLabel.text = model.name
         numberLabel.text = "\(model.result)"
         
@@ -71,17 +73,13 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
+            nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
             workoutImageView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
             workoutImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             workoutImageView.heightAnchor.constraint(equalToConstant: 57),
-            workoutImageView.widthAnchor.constraint(equalToConstant: 57)
-        ])
-        
-        NSLayoutConstraint.activate([
+            workoutImageView.widthAnchor.constraint(equalToConstant: 57),
+            
             numberLabel.centerYAnchor.constraint(equalTo: workoutImageView.centerYAnchor),
             numberLabel.leadingAnchor.constraint(equalTo: workoutImageView.trailingAnchor, constant: 10)
         ])

@@ -2,7 +2,7 @@
 //  Custom.swift
 //  Workout App
 //
-//  Created by MacBook on 26.08.2022.
+//  Created by Evgenii Lukin on 26.08.2022.
 //
 
 import UIKit
@@ -111,8 +111,6 @@ class CustomAlert {
                                     y: repsOrTimerLabel.frame.maxY,
                                     width: alertView.frame.width - 40,
                                     height: 30)
-        
-        
         repsTextField.backgroundColor = .specialBrown
         repsTextField.borderStyle = .none
         repsTextField.layer.cornerRadius = 10
@@ -151,7 +149,6 @@ class CustomAlert {
                 }  
             }
         }
-
     }
     
     @objc private func okButtonTapped() {
@@ -207,6 +204,7 @@ class CustomAlert {
     @objc private func kbWillShow() {
         scrollView.contentOffset = CGPoint(x: 0, y: 100)
     }
+    
     @objc private func kbWillHide() {
         scrollView.contentOffset = CGPoint.zero
     }

@@ -2,7 +2,7 @@
 //  StatisticTableViewCell.swift
 //  Workout App
 //
-//  Created by MacBook on 28.05.2022.
+//  Created by Evgenii Lukin on 28.05.2022.
 //
 
 import UIKit
@@ -43,6 +43,7 @@ class StatisticTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        setupStackView()
         setupViews()
         setConstraints()
     }
@@ -51,16 +52,21 @@ class StatisticTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setupStackView() {
+        
+        stackView = UIStackView(arrangedSubviews: [beforeLabel,
+                                                   nowLabel],
+                                axis: .horizontal,
+                                spacing: 10)
+    }
+    
     private func setupViews() {
+        
         backgroundColor = .clear
         selectionStyle = .none
         
         addSubview(differenceLabel)
         addSubview(nameLabel)
-        
-        stackView = UIStackView(arrangedSubviews: [beforeLabel, nowLabel],
-                                axis: .horizontal,
-                                spacing: 10)
         addSubview(stackView)
         addSubview(lineView)
     }
@@ -86,21 +92,15 @@ class StatisticTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             differenceLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             differenceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            differenceLabel.widthAnchor.constraint(equalToConstant: 50)
-        ])
-        
-        NSLayoutConstraint.activate([
+            differenceLabel.widthAnchor.constraint(equalToConstant: 50),
+            
             nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            nameLabel.trailingAnchor.constraint(equalTo: differenceLabel.leadingAnchor, constant: -20)
-        ])
-        
-        NSLayoutConstraint.activate([
+            nameLabel.trailingAnchor.constraint(equalTo: differenceLabel.leadingAnchor, constant: -20),
+            
             stackView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 0),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20)
-        ])
-        
-        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            
             lineView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             lineView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             lineView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),

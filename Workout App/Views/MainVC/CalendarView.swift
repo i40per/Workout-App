@@ -2,12 +2,13 @@
 //  CalendarView.swift
 //  Workout App
 //
-//  Created by MacBook on 06.04.2022.
+//  Created by Evgenii Lukin on 06.04.2022.
 //
 
 import UIKit
 
 protocol SelectCollectionViewItemProtocol: AnyObject {
+    
     func selectItem(date: Date)
 }
 
@@ -40,6 +41,7 @@ class CalendarView: UIView {
     }
     
     private func setupViews() {
+        
         backgroundColor = .specialGreen
         layer.cornerRadius = 10
         translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +51,7 @@ class CalendarView: UIView {
     }
     
     private func setDelegates() {
+        
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -80,7 +83,7 @@ extension CalendarView: UICollectionViewDataSource {
 
 //MARK: - UICollectionViewDelegate
 
-extension CalendarView: UICollectionViewDelegate { //Перемещение ячейки календаря
+extension CalendarView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -125,8 +128,6 @@ extension CalendarView {
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 105),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
-        
         ])
-        
     }
 }

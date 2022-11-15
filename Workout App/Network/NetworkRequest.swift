@@ -2,7 +2,7 @@
 //  NetworkRequest.swift
 //  Workout App
 //
-//  Created by MacBook on 10.09.2022.
+//  Created by Evgenii Lukin on 10.09.2022.
 //
 
 import Foundation

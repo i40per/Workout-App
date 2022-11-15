@@ -2,7 +2,7 @@
 //  NetworkDataFetch.swift
 //  Workout App
 //
-//  Created by MacBook on 11.09.2022.
+//  Created by Evgenii Lukin on 11.09.2022.
 //
 
 import Foundation

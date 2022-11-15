@@ -2,15 +2,15 @@
 //  DateAndRepeatViewController.swift
 //  Workout App
 //
-//  Created by MacBook on 29.06.2022.
+//  Created by Evgenii Lukin on 29.06.2022.
 //
 
 import UIKit
 
 class DateAndRepeatView: UIView {
-
+    
     private let datePicker: UIDatePicker = {
-       let datePicker = UIDatePicker()
+        let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.tintColor = .specialGreen
         datePicker.translatesAutoresizingMaskIntoConstraints = false
@@ -22,7 +22,7 @@ class DateAndRepeatView: UIView {
         repeatSwitch.isOn = true
         repeatSwitch.onTintColor = .specialGreen
         repeatSwitch.translatesAutoresizingMaskIntoConstraints = false
-       return repeatSwitch
+        return repeatSwitch
     }()
     
     private let dateLabel = UILabel(text: "Date",
@@ -39,6 +39,7 @@ class DateAndRepeatView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        setupStackView()
         setupViews()
         setConstraints()
     }
@@ -47,20 +48,25 @@ class DateAndRepeatView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupViews() {
-        backgroundColor = .specialBrown
-        layer.cornerRadius = 10
-        translatesAutoresizingMaskIntoConstraints = false
+    private func setupStackView() {
         
         dateStackView = UIStackView(arrangedSubviews: [dateLabel,
                                                        datePicker],
                                     axis: .horizontal,
                                     spacing: 10)
-        addSubview(dateStackView)
-        
-        repeatStackView = UIStackView(arrangedSubviews: [repeatLabel, repeatSwitch],
+        repeatStackView = UIStackView(arrangedSubviews: [repeatLabel,
+                                                         repeatSwitch],
                                       axis: .horizontal,
                                       spacing: 10)
+    }
+    
+    private func setupViews() {
+        
+        backgroundColor = .specialBrown
+        layer.cornerRadius = 10
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(dateStackView)
         addSubview(repeatStackView)
     }
     
@@ -68,7 +74,8 @@ class DateAndRepeatView: UIView {
         (datePicker.date, repeatSwitch.isOn)
     }
     
-    private func refreshWorkoutObjects() { //Сброс datePicker and Switch + public func
+    private func refreshWorkoutObjects() {
+        
         datePicker.setDate(Date(), animated: true)
         repeatSwitch.isOn = true
     }
@@ -86,10 +93,8 @@ class DateAndRepeatView: UIView {
         NSLayoutConstraint.activate([
             dateStackView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             dateStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            dateStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
-        ])
-        
-        NSLayoutConstraint.activate([
+            dateStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            
             repeatStackView.topAnchor.constraint(equalTo: dateStackView.bottomAnchor, constant: 10),
             repeatStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             repeatStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)

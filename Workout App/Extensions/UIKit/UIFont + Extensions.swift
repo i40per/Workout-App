@@ -2,16 +2,15 @@
 //  UIFont + Extensions.swift
 //  Workout App
 //
-//  Created by MacBook on 26.05.2022.
+//  Created by Evgenii Lukin on 26.05.2022.
 //
 
 import UIKit
 
 extension UIFont {
     
-    //label.font = UIFont(name: "Roboto-Medium", size: 24)
-
-    //Medium
+    //MARK: - Medium
+    
     static func robotoMedium12() -> UIFont? {
         return UIFont.init(name: "Roboto-Medium", size: 12)
     }
@@ -36,7 +35,8 @@ extension UIFont {
         return UIFont.init(name: "Roboto-Medium", size: 24)
     }
     
-    //Bold
+    //MARK: - Bold
+    
     static func robotoBold16() -> UIFont? {
         return UIFont.init(name: "Roboto-Bold", size: 16)
     }

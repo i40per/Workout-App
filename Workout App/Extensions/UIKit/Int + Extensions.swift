@@ -2,7 +2,7 @@
 //  Int + Extensions.swift
 //  Workout App
 //
-//  Created by MacBook on 28.08.2022.
+//  Created by Evgenii Lukin on 28.08.2022.
 //
 
 import Foundation

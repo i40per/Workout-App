@@ -2,7 +2,7 @@
 //  Notifications.swift
 //  Workout App
 //
-//  Created by MacBook on 04.09.2022.
+//  Created by Evgenii Lukin on 04.09.2022.
 //
 
 import UIKit
@@ -21,7 +21,6 @@ class Notifications: NSObject {
     
     func getNotificationSettings() {
         notificationCenter.getNotificationSettings { setting in
-//            print(setting)
         }
     }
     

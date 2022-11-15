@@ -2,7 +2,7 @@
 //  SettingViewController.swift
 //  Workout App
 //
-//  Created by MacBook on 03.09.2022.
+//  Created by Evgenii Lukin on 03.09.2022.
 //
 
 import UIKit
@@ -20,7 +20,7 @@ class SettingViewController: UIViewController {
         return label
     }()
     
-    private lazy var  closeButton: UIButton = {
+    private lazy var closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(UIImage(named: "closeButton"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -136,7 +136,7 @@ class SettingViewController: UIViewController {
         return textField
     }()
     
-    private lazy var  saveButton: UIButton = {
+    private lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .specialGreen
         button.setTitle("SAVE", for: .normal)
@@ -160,19 +160,52 @@ class SettingViewController: UIViewController {
     private var userModel = UserModel()
 
     override func viewDidLayoutSubviews() {
+        
         addPhotoImageView.layer.cornerRadius = addPhotoImageView.frame.height / 2
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setupStackView()
         setupViews()
-        setConstraints()
         addTaps()
+        setConstraints()
         
         userArray = localRealm.objects(UserModel.self)
         
         loadUserInfo()
+    }
+    
+    private func setupStackView() {
+        
+        firstNameStackView = UIStackView(arrangedSubviews: [firstNameLabel,
+                                                            firstNameTextField],
+                                         axis: .vertical,
+                                         spacing: 3)
+        secondNameStackView = UIStackView(arrangedSubviews: [secondNameLabel,
+                                                             secondNameTextField],
+                                         axis: .vertical,
+                                         spacing: 3)
+        heightStackView = UIStackView(arrangedSubviews: [heightLabel,
+                                                         heightTextField],
+                                         axis: .vertical,
+                                         spacing: 3)
+        weightStackView = UIStackView(arrangedSubviews: [weightLabel,
+                                                         weightTextField],
+                                         axis: .vertical,
+                                         spacing: 3)
+        targetStackView = UIStackView(arrangedSubviews: [targetLabel,
+                                                         targetTextField],
+                                         axis: .vertical,
+                                         spacing: 3)
+        generalStackView = UIStackView(arrangedSubviews: [firstNameStackView,
+                                                         secondNameStackView,
+                                                         heightStackView,
+                                                         weightStackView,
+                                                         targetStackView],
+                                       axis: .vertical,
+                                       spacing: 20)
     }
     
     private func setupViews() {
@@ -183,34 +216,6 @@ class SettingViewController: UIViewController {
         view.addSubview(closeButton)
         view.addSubview(addPhotoView)
         view.addSubview(addPhotoImageView)
-        
-        firstNameStackView = UIStackView(arrangedSubviews: [firstNameLabel, firstNameTextField],
-                                         axis: .vertical,
-                                         spacing: 3)
-        
-        secondNameStackView = UIStackView(arrangedSubviews: [secondNameLabel, secondNameTextField],
-                                         axis: .vertical,
-                                         spacing: 3)
-        
-        heightStackView = UIStackView(arrangedSubviews: [heightLabel, heightTextField],
-                                         axis: .vertical,
-                                         spacing: 3)
-        
-        weightStackView = UIStackView(arrangedSubviews: [weightLabel, weightTextField],
-                                         axis: .vertical,
-                                         spacing: 3)
-        
-        targetStackView = UIStackView(arrangedSubviews: [targetLabel, targetTextField],
-                                         axis: .vertical,
-                                         spacing: 3)
-        
-        generalStackView = UIStackView(arrangedSubviews: [firstNameStackView,
-                                                         secondNameStackView,
-                                                         heightStackView,
-                                                         weightStackView,
-                                                         targetStackView],
-                                       axis: .vertical,
-                                       spacing: 20)
         view.addSubview(generalStackView)
         view.addSubview(saveButton)
     }
@@ -259,7 +264,6 @@ class SettingViewController: UIViewController {
     }
     
     private func setUserModel() {
-        
         guard let firstName = firstNameTextField.text,
               let secondName = secondNameTextField.text,
               let height = heightTextField.text,
@@ -319,31 +323,23 @@ extension SettingViewController {
         
         NSLayoutConstraint.activate([
             editingProfileLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            editingProfileLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
+            editingProfileLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
             closeButton.centerYAnchor.constraint(equalTo: editingProfileLabel.centerYAnchor),
             closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             closeButton.heightAnchor.constraint(equalToConstant: 30),
-            closeButton.widthAnchor.constraint(equalToConstant: 30)
-        ])
-        
-        NSLayoutConstraint.activate([
+            closeButton.widthAnchor.constraint(equalToConstant: 30),
+            
             addPhotoImageView.topAnchor.constraint(equalTo: editingProfileLabel.bottomAnchor, constant: 20),
             addPhotoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             addPhotoImageView.heightAnchor.constraint(equalToConstant: 100),
-            addPhotoImageView.widthAnchor.constraint(equalToConstant: 100)
-        ])
-        
-        NSLayoutConstraint.activate([
+            addPhotoImageView.widthAnchor.constraint(equalToConstant: 100),
+            
             addPhotoView.topAnchor.constraint(equalTo: addPhotoImageView.topAnchor, constant: 50),
             addPhotoView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             addPhotoView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            addPhotoView.heightAnchor.constraint(equalToConstant: 70)
-        ])
-        
-        NSLayoutConstraint.activate([
+            addPhotoView.heightAnchor.constraint(equalToConstant: 70),
+            
             firstNameTextField.heightAnchor.constraint(equalToConstant: 40),
             secondNameTextField.heightAnchor.constraint(equalToConstant: 40),
             heightTextField.heightAnchor.constraint(equalToConstant: 40),
@@ -353,9 +349,7 @@ extension SettingViewController {
             generalStackView.topAnchor.constraint(equalTo: addPhotoView.bottomAnchor, constant: 20),
             generalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             generalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-        ])
-        
-        NSLayoutConstraint.activate([
+            
             saveButton.topAnchor.constraint(equalTo: generalStackView.bottomAnchor, constant: 30),
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),

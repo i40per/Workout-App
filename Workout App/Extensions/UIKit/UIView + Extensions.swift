@@ -2,7 +2,7 @@
 //  UIView + Extensions.swift
 //  Workout App
 //
-//  Created by MacBook on 26.05.2022.
+//  Created by Evgenii Lukin on 26.05.2022.
 //
 
 import UIKit

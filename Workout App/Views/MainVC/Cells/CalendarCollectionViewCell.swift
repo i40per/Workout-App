@@ -2,7 +2,7 @@
 //  CalendarCollectionViewCell.swift
 //  Workout App
 //
-//  Created by MacBook on 26.05.2022.
+//  Created by Evgenii Lukin on 26.05.2022.
 //
 
 import UIKit
@@ -55,6 +55,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupViews() {
+        
         layer.cornerRadius = 10
         
         addSubview(dayOfWeekLabel)
@@ -62,21 +63,22 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     }
     
     private func cellConfigure(numberOfDay: String, dayOfWeek: String) {
+        
         numberOfDayLabel.text = numberOfDay
         dayOfWeekLabel.text = dayOfWeek
     }
     
     public func dateForCell(numberOfDay: String, dayOfWeek: String) {
+        
         cellConfigure(numberOfDay: numberOfDay, dayOfWeek: dayOfWeek)
     }
     
     private func setConstraints() {
-        NSLayoutConstraint.activate([
-            dayOfWeekLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            dayOfWeekLabel.topAnchor.constraint(equalTo: topAnchor, constant: 7)
-        ])
         
         NSLayoutConstraint.activate([
+            dayOfWeekLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            dayOfWeekLabel.topAnchor.constraint(equalTo: topAnchor, constant: 7),
+            
             numberOfDayLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             numberOfDayLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
         ])

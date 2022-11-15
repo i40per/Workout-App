@@ -2,13 +2,14 @@
 //  UserModel.swift
 //  Workout App
 //
-//  Created by MacBook on 03.09.2022.
+//  Created by Evgenii Lukin on 03.09.2022.
 //
 
 import Foundation
 import RealmSwift
 
 class UserModel: Object {
+    
     @Persisted var userFirstName: String = "Unknow"
     @Persisted var userSecondName: String = "Unknow"
     @Persisted var userHeight: Int = 0

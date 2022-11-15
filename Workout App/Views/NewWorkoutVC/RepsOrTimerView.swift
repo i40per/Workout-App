@@ -2,7 +2,7 @@
 //  RepsOrTimerView.swift
 //  Workout App
 //
-//  Created by MacBook on 29.06.2022.
+//  Created by Evgenii Lukin on 29.06.2022.
 //
 
 import UIKit
@@ -20,7 +20,7 @@ class RepsOrTimerView: UIView {
         return slider
     }()
 
-    private lazy var  repsSlider: UISlider = {
+    private lazy var repsSlider: UISlider = {
         let slider = UISlider()
         slider.minimumValue = 0
         slider.maximumValue = 50
@@ -31,7 +31,7 @@ class RepsOrTimerView: UIView {
         return slider
     }()
 
-    private lazy var  timerSlider: UISlider = {
+    private lazy var timerSlider: UISlider = {
         let slider = UISlider()
         slider.minimumValue = 0
         slider.maximumValue = 600
@@ -76,6 +76,7 @@ class RepsOrTimerView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        setupStackView()
         setupViews()
         setConstraints()
     }
@@ -84,28 +85,33 @@ class RepsOrTimerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupViews() {
-        backgroundColor = .specialBrown
-        layer.cornerRadius = 10
-        translatesAutoresizingMaskIntoConstraints = false
+    private func setupStackView() {
         
         setsStackView = UIStackView(arrangedSubviews: [setsLabel,
                                                        numberOfSetLabel],
                                     axis: .horizontal,
                                     spacing: 10)
+        repsStackView = UIStackView(arrangedSubviews: [repsLabel,
+                                                       numberOfRepsLabel],
+                                      axis: .horizontal,
+                                      spacing: 10)
+        timerStackView = UIStackView(arrangedSubviews: [timerLabel,
+                                                        numberOfTimerLabel],
+                                      axis: .horizontal,
+                                      spacing: 10)
+    }
+    
+    private func setupViews() {
+        
+        backgroundColor = .specialBrown
+        layer.cornerRadius = 10
+        translatesAutoresizingMaskIntoConstraints = false
+        
         addSubview(setsStackView)
         addSubview(setsSlider)
         addSubview(repeatOrTimerLabel)
-        
-        repsStackView = UIStackView(arrangedSubviews: [repsLabel, numberOfRepsLabel],
-                                      axis: .horizontal,
-                                      spacing: 10)
         addSubview(repsStackView)
         addSubview(repsSlider)
-        
-        timerStackView = UIStackView(arrangedSubviews: [timerLabel, numberOfTimerLabel],
-                                      axis: .horizontal,
-                                      spacing: 10)
         addSubview(timerStackView)
         addSubview(timerSlider)
     }
@@ -153,7 +159,7 @@ class RepsOrTimerView: UIView {
         return (setsSliderValue, repsSliderValue, timerSliderValue)
     }
     
-    private func refreshWorkoutObjects() { //Сброс sliders and label + public func + NewWorcoutVC
+    private func refreshWorkoutObjects() {
         numberOfSetLabel.text = "0"
         setsSlider.value = 0
         numberOfRepsLabel.text = "0"
@@ -175,39 +181,27 @@ class RepsOrTimerView: UIView {
         NSLayoutConstraint.activate([
             setsStackView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             setsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            setsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
-        ])
-        
-        NSLayoutConstraint.activate([
+            setsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            
             setsSlider.topAnchor.constraint(equalTo: setsStackView.bottomAnchor, constant: 10),
             setsSlider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            setsSlider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
-        ])
-        
-        NSLayoutConstraint.activate([
+            setsSlider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            
             repeatOrTimerLabel.topAnchor.constraint(equalTo: setsSlider.bottomAnchor, constant: 15),
-            repeatOrTimerLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
+            repeatOrTimerLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
             repsStackView.topAnchor.constraint(equalTo: repeatOrTimerLabel.bottomAnchor, constant: 20),
             repsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            repsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
-        ])
-        
-        NSLayoutConstraint.activate([
+            repsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            
             repsSlider.topAnchor.constraint(equalTo: repsStackView.bottomAnchor, constant: 10),
             repsSlider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            repsSlider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
-        ])
-        
-        NSLayoutConstraint.activate([
+            repsSlider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            
             timerStackView.topAnchor.constraint(equalTo: repsSlider.bottomAnchor, constant: 20),
             timerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            timerStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
-        ])
-        
-        NSLayoutConstraint.activate([
+            timerStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            
             timerSlider.topAnchor.constraint(equalTo: timerStackView.bottomAnchor, constant: 10),
             timerSlider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             timerSlider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)

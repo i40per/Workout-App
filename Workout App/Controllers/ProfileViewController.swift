@@ -2,13 +2,14 @@
 //  ProfileViewController.swift
 //  Workout App
 //
-//  Created by MacBook on 03.09.2022.
+//  Created by Evgenii Lukin on 03.09.2022.
 //
 
 import UIKit
 import RealmSwift
 
 struct ResultWorkout {
+    
     let name: String
     let result: Int
     let imageData: Data?
@@ -72,7 +73,7 @@ class ProfileViewController: UIViewController {
         return label
     }()
     
-    private lazy var  editingButton: UIButton = {
+    private lazy var editingButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Editing ", for: .normal)
         button.titleLabel?.font = .robotoBold16()
@@ -155,6 +156,7 @@ class ProfileViewController: UIViewController {
     private var resultWorkout = [ResultWorkout]()
     
     override func viewDidLayoutSubviews() {
+        
         userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.height / 2
     }
     
@@ -172,9 +174,20 @@ class ProfileViewController: UIViewController {
         
         userArray = localRealm.objects(UserModel.self)
         
+        setupStackView()
         setupViews()
         setConstraints()
         setDelegates()
+    }
+    
+    private func setupStackView() {
+        
+        userParamStackView = UIStackView(arrangedSubviews: [userHeightLabel, userWeightLabel],
+                                         axis: .horizontal,
+                                         spacing: 10)
+        targetStackView = UIStackView(arrangedSubviews: [workoutsNowLabel, workoutsTargetLabel],
+                                         axis: .horizontal,
+                                         spacing: 10)
     }
     
     private func setupViews() {
@@ -185,27 +198,20 @@ class ProfileViewController: UIViewController {
         view.addSubview(userPhotoView)
         view.addSubview(userPhotoImageView)
         view.addSubview(userNameLabel)
-        
-        userParamStackView = UIStackView(arrangedSubviews: [userHeightLabel, userWeightLabel],
-                                         axis: .horizontal,
-                                         spacing: 10)
         view.addSubview(userParamStackView)
         view.addSubview(editingButton)
         view.addSubview(collectionView)
+        
         collectionView.register(ProfileCollectionViewCell.self, forCellWithReuseIdentifier: idProfileCollectionViewCell)
         
         view.addSubview(targetLabel)
-        
-        targetStackView = UIStackView(arrangedSubviews: [workoutsNowLabel, workoutsTargetLabel],
-                                         axis: .horizontal,
-                                         spacing: 10)
         view.addSubview(targetStackView)
         view.addSubview(targetView)
-        
         view.addSubview(progressView)
     }
     
     private func setDelegates() {
+        
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -305,66 +311,46 @@ extension ProfileViewController {
         
         NSLayoutConstraint.activate([
             profileLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            profileLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
+            profileLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
             userPhotoImageView.topAnchor.constraint(equalTo: profileLabel.bottomAnchor, constant: 20),
             userPhotoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             userPhotoImageView.heightAnchor.constraint(equalToConstant: 90),
-            userPhotoImageView.widthAnchor.constraint(equalToConstant: 90)
-        ])
-        
-        NSLayoutConstraint.activate([
+            userPhotoImageView.widthAnchor.constraint(equalToConstant: 90),
+            
             userPhotoView.topAnchor.constraint(equalTo: userPhotoImageView.topAnchor, constant: 45),
             userPhotoView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             userPhotoView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            userPhotoView.heightAnchor.constraint(equalToConstant: 110)
-        ])
-        
-        NSLayoutConstraint.activate([
+            userPhotoView.heightAnchor.constraint(equalToConstant: 110),
+            
             userNameLabel.bottomAnchor.constraint(equalTo: userPhotoView.bottomAnchor, constant: -20),
-            userNameLabel.centerXAnchor.constraint(equalTo: userPhotoView.centerXAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
+            userNameLabel.centerXAnchor.constraint(equalTo: userPhotoView.centerXAnchor),
+            
             userParamStackView.topAnchor.constraint(equalTo: userPhotoView.bottomAnchor, constant: 5),
-            userParamStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30)
-        ])
-        
-        NSLayoutConstraint.activate([
+            userParamStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            
             editingButton.topAnchor.constraint(equalTo: userPhotoView.bottomAnchor, constant: 5),
             editingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             editingButton.heightAnchor.constraint(equalToConstant: 25),
-            editingButton.widthAnchor.constraint(equalToConstant: 75)
-        ])
-        
-        NSLayoutConstraint.activate([
+            editingButton.widthAnchor.constraint(equalToConstant: 75),
+            
             collectionView.topAnchor.constraint(equalTo: userParamStackView.bottomAnchor, constant: 20),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            collectionView.heightAnchor.constraint(equalToConstant: 250)
-        ])
-        
-        NSLayoutConstraint.activate([
+            collectionView.heightAnchor.constraint(equalToConstant: 250),
+            
             targetLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 30),
-            targetLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
-        ])
-        
-        NSLayoutConstraint.activate([
+            targetLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            
             targetStackView.topAnchor.constraint(equalTo: targetLabel.bottomAnchor, constant: 10),
             targetStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            targetStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
-        ])
-        
-        NSLayoutConstraint.activate([
+            targetStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            
             targetView.topAnchor.constraint(equalTo: targetStackView.bottomAnchor, constant: 3),
             targetView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             targetView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            targetView.heightAnchor.constraint(equalToConstant: 28)
-        ])
-        
-        NSLayoutConstraint.activate([
+            targetView.heightAnchor.constraint(equalToConstant: 28),
+            
             progressView.topAnchor.constraint(equalTo: targetView.bottomAnchor, constant: 20),
             progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),

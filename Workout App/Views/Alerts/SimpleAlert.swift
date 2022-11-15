@@ -2,7 +2,7 @@
 //  SimpleAlert.swift
 //  Workout App
 //
-//  Created by MacBook on 08.08.2022.
+//  Created by Evgenii Lukin on 08.08.2022.
 //
 
 import UIKit

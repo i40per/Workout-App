@@ -2,7 +2,7 @@
 //  OnboardingCollectionViewCell.swift
 //  Workout App
 //
-//  Created by MacBook on 10.09.2022.
+//  Created by Evgenii Lukin on 10.09.2022.
 //
 
 import UIKit
@@ -12,14 +12,12 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
     private let backgroundImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-//        imageView.image = UIImage(named: "onboardingSecond")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     private let topLabel: UILabel = {
        let label = UILabel()
-//        label.text = "Have a good health"
         label.textColor = .specialGreen
         label.font = .robotoBold24()
         label.textAlignment = .center
@@ -29,7 +27,6 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
     
     private let bottomLabel: UILabel = {
        let label = UILabel()
-//        label.text = "Bad body shape, poor sleep, lack of strength, weight gain, weak bones, easily traumatized body, depressed, stressed, poor metabolism, poor resistance"
         label.textColor = .white
         label.font = .robotoMedium16()
         label.textAlignment = .center
@@ -50,15 +47,16 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupViews() {
+        
         backgroundColor = .specialGreen
         
         addSubview(backgroundImageView)
         addSubview(topLabel)
         addSubview(bottomLabel)
-       
     }
     
     func cellConfigure(model: OnboardingStruct) {
+        
         topLabel.text = model.topLabel
         bottomLabel.text = model.bottomLabel
         backgroundImageView.image = model.image
@@ -70,21 +68,16 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
             backgroundImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            backgroundImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7)
-        ])
-        
-        NSLayoutConstraint.activate([
-            topLabel.topAnchor.constraint(equalTo: topAnchor, constant: 60),
+            backgroundImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8),
+            
+            topLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 40),
             topLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            topLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
-        ])
-        
-        NSLayoutConstraint.activate([
+            topLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            
             bottomLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             bottomLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             bottomLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             bottomLabel.heightAnchor.constraint(equalToConstant: 85)
         ])
-        
     }
 }

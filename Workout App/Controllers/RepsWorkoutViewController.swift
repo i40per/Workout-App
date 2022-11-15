@@ -2,7 +2,7 @@
 //  RepsWorkoutViewController.swift
 //  Workout App
 //
-//  Created by MacBook on 23.08.2022.
+//  Created by Evgenii Lukin on 23.08.2022.
 //
 
 import UIKit
@@ -19,7 +19,7 @@ class RepsWorkoutViewController: UIViewController {
         return label
     }()
     
-    private lazy var  closeButton: UIButton = {
+    private lazy var closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(UIImage(named: "closeButton"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -70,10 +70,12 @@ class RepsWorkoutViewController: UIViewController {
     }
     
     private func setDelegates() {
+        
         workoutParametersView.cellNextSetDelegate = self
     }
     
     private func setupViews() {
+        
         view.backgroundColor = .specialBackground
         
         view.addSubview(newWorkoutLabel)
@@ -142,37 +144,27 @@ extension RepsWorkoutViewController {
   
         NSLayoutConstraint.activate([
             newWorkoutLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            newWorkoutLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
+            newWorkoutLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
             closeButton.centerYAnchor.constraint(equalTo: newWorkoutLabel.centerYAnchor),
             closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             closeButton.heightAnchor.constraint(equalToConstant: 30),
-            closeButton.widthAnchor.constraint(equalToConstant: 30)
-        ])
-        
-        NSLayoutConstraint.activate([
+            closeButton.widthAnchor.constraint(equalToConstant: 30),
+            
             sportmanImageView.topAnchor.constraint(equalTo: newWorkoutLabel.bottomAnchor, constant: 20),
             sportmanImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             sportmanImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
-            sportmanImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)
-        ])
-        
-        NSLayoutConstraint.activate([
+            sportmanImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
+            
             detailsLabel.topAnchor.constraint(equalTo: sportmanImageView.bottomAnchor, constant: 20),
             detailsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            detailsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-        ])
-        
-        NSLayoutConstraint.activate([
+            detailsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
             workoutParametersView.topAnchor.constraint(equalTo: detailsLabel.bottomAnchor, constant: 5),
             workoutParametersView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             workoutParametersView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            workoutParametersView.heightAnchor.constraint(equalToConstant: 230)
-        ])
-        
-        NSLayoutConstraint.activate([
+            workoutParametersView.heightAnchor.constraint(equalToConstant: 230),
+            
             finishButton.topAnchor.constraint(equalTo: workoutParametersView.bottomAnchor, constant: 20),
             finishButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             finishButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -180,5 +172,3 @@ extension RepsWorkoutViewController {
         ])
     }
 }
-
-

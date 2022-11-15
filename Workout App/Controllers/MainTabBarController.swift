@@ -2,7 +2,7 @@
 //  MainTabBarController.swift
 //  Workout App
 //
-//  Created by MacBook on 28.05.2022.
+//  Created by Evgenii Lukin on 28.05.2022.
 
 import UIKit
 
@@ -13,7 +13,6 @@ class MainTabBarController: UITabBarController {
         
         setupTabBar()
         setupViews()
-        
     }
     
     private func setupTabBar() {

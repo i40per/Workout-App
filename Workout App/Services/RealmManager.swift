@@ -2,7 +2,7 @@
 //  RealmManager.swift
 //  Workout App
 //
-//  Created by MacBook on 29.06.2022.
+//  Created by Evgenii Lukin on 29.06.2022.
 //
 
 import Foundation
@@ -67,6 +67,3 @@ class RealmManager {
         }
     }
 }
-
-
-
