@@ -22,7 +22,7 @@ class MainViewController: UIViewController {
     
     private let userNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Eugene Lukin"
+        label.text = "User Name"
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont.systemFont(ofSize: 20)
         label.minimumScaleFactor = 0.5

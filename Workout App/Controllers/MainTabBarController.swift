@@ -36,9 +36,9 @@ class MainTabBarController: UITabBarController {
         items[1].title = "Statistic"
         items[2].title = "Profile"
         
-        items[0].image = UIImage(named: "mainTabBar")
-        items[1].image = UIImage(named: "statisticTabBar")
-        items[2].image = UIImage(named: "profileTabBar")
+        items[0].image = UIImage(systemName: "doc.plaintext")
+        items[1].image = UIImage(systemName: "slider.horizontal.3")
+        items[2].image = UIImage(systemName: "person")
         
         UITabBarItem.appearance().setTitleTextAttributes([.font: UIFont(name: "Roboto-Bold", size: 12) as Any], for: .normal)
     }
