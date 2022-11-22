@@ -18,7 +18,6 @@ class WeatherView: UIView {
     
     private let weatherStatusLabel: UILabel = {
         let label = UILabel()
-        label.text = "Солнечно"
         label.adjustsFontSizeToFitWidth = true
         label.textColor = .specialGray
         label.font = .robotoMedium18()
@@ -28,7 +27,6 @@ class WeatherView: UIView {
     
     private let weatherDiscriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Хорошая погода, чтобы позаниматься на улице"
         label.adjustsFontSizeToFitWidth = true
         label.textColor = .specialGray
         label.font = .robotoMedium14()
